@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using PetElevator.HR;
+using PetElevator.CRM;
 
 namespace PetElevator.Tests
 {
@@ -39,7 +40,21 @@ namespace PetElevator.Tests
             Assert.AreEqual(100, employee.Salary); //salary should remain same
         }
 
+        [TestMethod]
+        public void GetBalanceDueTest()
+        {
+            Employee customer = new Employee("Albert", "Einstein");
+            Dictionary<string, double> servicesRendered = new Dictionary<string, double> {
+                { "brushing", 5.00 },
+                { "teeth cleaning", 400.00},
+                { "bonus bowtie", 2.00}};
+            double expectedResult = 203.50;
 
+            double result = customer.GetBalanceDue(servicesRendered);
 
+            Assert.AreEqual(expectedResult, result);
+        }
     }
+
 }
+
