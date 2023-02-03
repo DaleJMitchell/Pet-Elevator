@@ -3,7 +3,7 @@ using PetElevator.Shared;
 
 namespace PetElevator.HR
 {
-    public class Employee : Person
+    public class Employee : Person, IBillable
     {
         public int EmployeeId { get; private set; }
         public string Title { get; set; }
@@ -35,6 +35,15 @@ namespace PetElevator.HR
                 Salary *= (percentage / 100) + 1;
             }
         }
+        public double GetBalanceDue(Dictionary<string, double> servicesRendered)
+        {
+            double totalBalance = 0;
+            foreach (KeyValuePair<string, double> kvp in servicesRendered)
+            {
+                totalBalance += kvp.Value;
 
+            }
+            return totalBalance/ 2.00;
+        }
     }
 }
